@@ -12,7 +12,7 @@ const categorySchema = new mongoose.Schema(
         description: {
             type: String,
             trim: true,
-            maxlength: [200, 'Description cannot be more than 200 characters']
+            maxlength: [400, 'Description cannot be more than 200 characters']
         },
         icon: {
             type: String,
