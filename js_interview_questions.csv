@@ -1,0 +1,57 @@
+type,category,question,optionA,optionB,optionC,optionD,correct
+MCQ,JavaScript,What is the result of 2 + '2' in JavaScript?,4,22,22,NaN,B
+MCQ,JavaScript,Which of the following is not a JavaScript data type?,String,Boolean,Undefined,Character,D
+MCQ,JavaScript,What does the `typeof` operator return for an array?,object,array,Array,undefined,A
+MCQ,JavaScript,Which method can be used to remove the last element of an array?,pop,push,shift,unshift,A
+MCQ,JavaScript,What is the scope of a variable declared with `var`?,Function scope,Block scope,Global scope,Local scope,A
+MCQ,JavaScript,What is the purpose of the `this` keyword in JavaScript?,Refer to the current object,Declare a variable,Return a value,Invoke a function,A
+MCQ,JavaScript,Which method is used to join all elements of an array into a single string?,join,concat,push,split,A
+MCQ,JavaScript,Which of the following is a way to define a function in JavaScript?,function functionName(){},var functionName(){},function: functionName(){},def functionName(){},A
+MCQ,JavaScript,How can you declare a constant variable in JavaScript?,const var let,const let var,const A
+MCQ,JavaScript,What will be the result of `false == 0`?,true,false,undefined,null,A
+MCQ,JavaScript,Which of the following is not an operator in JavaScript?,+,*,//,^^,E
+MCQ,JavaScript,How do you write a comment in JavaScript?,// comment,/* comment */,<!-- comment -->,<!-- comment -->,A
+MCQ,JavaScript,What does `JSON.stringify()` do in JavaScript?,Converts a JavaScript object into a JSON string,Converts a JSON string into a JavaScript object,Validates a JSON string,Parses a JavaScript object,A
+MCQ,JavaScript,Which of the following methods is used to add elements to the end of an array?,push,unshift,pop,shift,A
+MCQ,JavaScript,What is the result of `"5" - 2` in JavaScript?,3,7,"7",NaN,A
+MCQ,JavaScript,Which of the following methods is used to convert a string to lowercase in JavaScript?,toLowerCase,toUpperCase,concat,split,A
+MCQ,JavaScript,Which of the following is true about JavaScript arrays?,Arrays are zero-indexed,Arrays are one-indexed,Arrays are immutable,Arrays can't be iterated,A
+MCQ,JavaScript,What does `null` represent in JavaScript?,No value,An empty string,A reference to an object,An undefined variable,A
+MCQ,JavaScript,Which keyword is used to define a class in JavaScript?,class,define,function,object,A
+MCQ,JavaScript,Which method is used to find the index of an element in an array?,indexOf,find,search,match,A
+MCQ,JavaScript,How can you prevent a default action in an event handler?,event.preventDefault(),event.stopPropagation(),return false,stopDefault(),A
+MCQ,JavaScript,What will be the output of `console.log(1 + "1")`?,11,2,NaN,undefined,A
+MCQ,JavaScript,What is the use of `setTimeout` function in JavaScript?,Delay execution of a function,Repeat a function after an interval,Execute a function immediately,Clear a timeout,A
+MCQ,JavaScript,Which method is used to parse a JSON string into a JavaScript object?,JSON.parse(),JSON.stringify(),JSON.convert(),JSON.toObject(),A
+MCQ,JavaScript,What does the `bind()` method do in JavaScript?,Sets the value of `this` for a function,Returns the function's name,Binds the function to a variable,Checks if a function is defined,A
+MCQ,JavaScript,How do you create an empty object in JavaScript?,let obj = {};let obj = [],let obj = Object.create(null),let obj = null,A
+MCQ,JavaScript,Which of the following methods is used to get the length of a string?,length,size,count,strlen,A
+MCQ,JavaScript,What is the purpose of the `async` keyword?,To create a promise,To define a function as asynchronous,To make a function return a promise,To handle errors,A
+MCQ,JavaScript,What is the default value of an uninitialized variable in JavaScript?,undefined,null,NaN,0,A
+MCQ,JavaScript,What does the `splice()` method do on an array?,Adds/removes elements at a specific index,Finds the index of an element,Reverses the array,Concatenates arrays,A
+MCQ,JavaScript,Which of the following will correctly add a property to an object?,obj.key = "value";obj["key"] = "value";Both A and B;Neither A nor B,C
+MCQ,JavaScript,What will be the result of `"5" * 2` in JavaScript?,10,52,55,NaN,A
+MCQ,JavaScript,Which of the following is used to make a function a generator in JavaScript?,function* functionName() {},function functionName() {},async function functionName() {},function functionName() {},A
+MCQ,JavaScript,What is the scope of a variable declared with `let`?,Block scope,Global scope,Function scope,Local scope,A
+MCQ,JavaScript,Which of the following is not a valid JavaScript loop?,for,while,foreach,loop,D
+MCQ,JavaScript,How do you check whether a variable is an array?,Array.isArray(),typeof array,instanceof Array,all of the above,A
+MCQ,JavaScript,What is the purpose of the `catch` block in a `try-catch` statement?,Handles errors,Attempts to execute code,Continues execution of code,Stops the program,A
+MCQ,JavaScript,What is the use of `super` keyword in JavaScript?,Calls a parent class method,Sets a property in a class,Defines a class constructor,Sets the prototype of a class,A
+MCQ,JavaScript,Which of the following is used to store key-value pairs in JavaScript?,Objects,Arrays,Functions,Maps,A
+MCQ,JavaScript,What is the result of `2 == "2"` in JavaScript?,true,false,undefined,null,A
+MCQ,JavaScript,What is the purpose of `Object.freeze()` in JavaScript?,Prevent modification of object properties,Clone an object,Delete an object,Convert an object to JSON,A
+MCQ,JavaScript,How do you access a property in a JavaScript object?,obj.property,obj["property"],Both A and B,Neither A nor B,C
+MCQ,JavaScript,What is the result of `typeof NaN`?,number,string,object,undefined,A
+MCQ,JavaScript,Which of the following can be used to pause the execution of a function in JavaScript?,async/await,setTimeout,setInterval,all of the above,D
+MCQ,JavaScript,What does `Promise.all()` do in JavaScript?,Runs promises concurrently,Handles sequential promises,Resolves a single promise,Throws an error,A
+MCQ,JavaScript,Which operator is used to check both value and type equality in JavaScript?,==,===,!=,!==, B
+TrueFalse,JavaScript,JavaScript is a strongly-typed language.,True,False,,False
+TrueFalse,JavaScript,The `let` keyword has block scope.,True,False,,True
+TrueFalse,JavaScript,In JavaScript, `null` is an object.,True,False,,True
+TrueFalse,JavaScript,Arrays in JavaScript are indexed starting from 1.,True,False,,False
+TrueFalse,JavaScript,JavaScript has a built-in function to sum the values in an array.,True,False,,False
+TrueFalse,JavaScript,`undefined` is a type in JavaScript.,True,False,,True
+TrueFalse,JavaScript,The `map()` method creates a new array.,True,False,,True
+TrueFalse,JavaScript,JavaScript supports object-oriented programming.,True,False,,True
+TrueFalse,JavaScript,In JavaScript, `===` compares both value and type.,True,False,,True
+TrueFalse,JavaScript,`undefined` and `null` are equal when compared with `==`.,True,False,,True
