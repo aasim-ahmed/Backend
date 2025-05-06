@@ -3,11 +3,13 @@ import "dotenv/config";
 import cors from "cors";
 import bodyParser from "body-parser";
 import connectDB from "./config/db.js";
+import userRoutes from "./routes/userRoute.js";
 import questionRoutes from "./routes/questionRoute.js";
 import answerRoutes from "./routes/answerRoute.js";
 import testRoutes from "./routes/testRoute.js";
 import questionTypeRoutes from "./routes/questionTypeRoute.js";
 import categoryRoutes from "./routes/categoryRoute.js";
+import assessmentRoutes from "./routes/assessmentRoute.js";
 
 
 const app = express();
@@ -22,11 +24,13 @@ app.get("/", (req, res) => {
     res.json("API is running");
 })
 
+app.use("/user", userRoutes);
 app.use("/question", questionRoutes);
+app.use("/questiontype", questionTypeRoutes);
 app.use("/answer", answerRoutes);
 app.use("/test", testRoutes);
-app.use("/questiontype", questionTypeRoutes);
 app.use("/category", categoryRoutes);
+app.use("/assessment", assessmentRoutes);
 
 
 app.listen(process.env.PORT, () => {
