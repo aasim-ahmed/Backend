@@ -6,7 +6,7 @@ export const config = {
     env: process.env.NODE_ENV || 'development',
   },
   db: {
-    uri: process.env.MONGODB_URI,
+    uri: process.env.MONGO_URI,
   },
   jwt: {
     secret: process.env.JWT_SECRET,
