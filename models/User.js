@@ -33,6 +33,12 @@ const userSchema = new mongoose.Schema(
       enum: ['admin', 'recruiter', 'technical_expert', 'candidate'],
       default: 'candidate',
     },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6,
+      },
+      
   },
   { timestamps: true }
 );
