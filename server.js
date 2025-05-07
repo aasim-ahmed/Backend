@@ -8,8 +8,8 @@ import questionRoutes from "./routes/questionRoute.js";
 import answerRoutes from "./routes/answerRoute.js";
 import testRoutes from "./routes/testRoute.js";
 import questionTypeRoutes from "./routes/questionTypeRoute.js";
-import categoryRoutes from "./routes/categoryRoute.js";
 import assessmentRoutes from "./routes/assessmentRoute.js";
+
 
 
 const app = express();
@@ -27,9 +27,8 @@ app.get("/", (req, res) => {
 app.use("/user", userRoutes);
 app.use("/question", questionRoutes);
 app.use("/questiontype", questionTypeRoutes);
-app.use("/answer", answerRoutes);
 app.use("/test", testRoutes);
-app.use("/category", categoryRoutes);
+app.use("/answer", answerRoutes);
 app.use("/assessment", assessmentRoutes);
 
 
