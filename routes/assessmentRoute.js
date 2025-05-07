@@ -1,12 +1,19 @@
 import express from "express";
 import assessmentController from "../controllers/assessmentController.js";
+import auth from "../middleware/authMiddleware.js";
 
-const assessmentRoutes = express.Router();
+const router = express.Router();
 
-assessmentRoutes.post("/createAssessment", assessmentController.createAssessment);
-assessmentRoutes.get("/getAllAssessments", assessmentController.getAllAssessments);
-assessmentRoutes.get("/getAssessment/:id", assessmentController.getAssessment);
-assessmentRoutes.put("/updateAssessment/:id", assessmentController.updateAssessment);
-assessmentRoutes.delete("/deleteAssessment/:id", assessmentController.deleteAssessment);
+// Public routes
+router.get('/', assessmentController.getAllAssessments);
+router.get('/:id', assessmentController.getAssessmentById);
 
-export default assessmentRoutes;
+// Protected routes
+router.post('/', auth, assessmentController.createAssessment);
+router.put('/:id', auth, assessmentController.updateAssessment);
+router.delete('/:id', auth, assessmentController.deleteAssessment);
+
+// Clone an assessment (e.g. for reuse by other users)
+router.post('/:id/clone', auth, assessmentController.cloneAssessment);
+
+export default router;
