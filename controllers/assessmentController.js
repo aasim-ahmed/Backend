@@ -1,4 +1,5 @@
-import assessmentModel from "../models/assessmentModel.js";
+import Assessment from "../models/Assessment.js";
+import Test from "../models/Test.js";
 
 const assessmentController = {
 
