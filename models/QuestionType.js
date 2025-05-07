@@ -14,17 +14,10 @@ const questionTypeSchema = new mongoose.Schema(
             trim: true,
             maxlength: [200, 'Description cannot be more than 200 characters']
         },
-        icon: {
-            type: String,
-            trim: true
-        },
-        is_active: {
-            type: Boolean,
-            default: true
-        },
-        display_order: {
-            type: Number,
-            default: 0
+       createdBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
         }
     },
     {
@@ -32,9 +25,7 @@ const questionTypeSchema = new mongoose.Schema(
     }
 );
 
-// Indexes for better query performance
-questionTypeSchema.index({ is_active: 1 });
-questionTypeSchema.index({ display_order: 1 });
+
 
 const QuestionType = mongoose.model('QuestionType', questionTypeSchema);
 
