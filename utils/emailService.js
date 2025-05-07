@@ -1,27 +1,31 @@
 import nodemailer from 'nodemailer';
+import "dotenv/config";
 
-const sendInvitationEmail = async (to, assessmentTitle, passkey, link) => {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-  
-    const html = `
-      <h3>Assessment Invitation</h3>
-      <p>You are invited to take <b>${assessmentTitle}</b></p>
-      <p><b>Link:</b> <a href="${link}">${link}</a></p>
-      <p><b>Passkey:</b> ${passkey}</p>
-    `;
-  
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to,
-      subject: 'Your Assessment Invitation',
-      html,
-    });
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // You can use any SMTP service here
+  auth: {
+      user: process.env.EMAIL_USER, // Your email
+      pass: process.env.EMAIL_PASSWORD, // Your email password
+  },
+});
+
+const sendTestInvitationEmail = async (toEmail, passkey) => {
+  const mailOptions = {
+      from: process.env.EMAIL_USER, // sender address
+      to: toEmail, // list of receivers
+      subject: 'Test Invitation', // Subject line
+      html: `<p>You have been invited to take a test. Please use the following passkey to start the test:</p>
+             <p><strong>Passkey: ${passkey}</strong></p>
+             <p>The test will be available from the moment you receive this email until the validity period expires.</p>`, // HTML body
   };
+
+  try {
+      await transporter.sendMail(mailOptions);
+  } catch (error) {
+      console.error('Error sending email: ', error);
+      throw new Error('Error sending email');
+  }
+};
   
-  export default sendInvitationEmail;
+  export default sendTestInvitationEmail;
