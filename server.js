@@ -5,7 +5,6 @@ import bodyParser from "body-parser";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js";
 import questionRoutes from "./routes/questionRoute.js";
-import answerRoutes from "./routes/answerRoute.js";
 import testRoutes from "./routes/testRoute.js";
 import questionTypeRoutes from "./routes/questionTypeRoute.js";
 import assessmentRoutes from "./routes/assessmentRoute.js";
@@ -28,7 +27,6 @@ app.use("/user", userRoutes);
 app.use("/question", questionRoutes);
 app.use("/questiontype", questionTypeRoutes);
 app.use("/test", testRoutes);
-app.use("/answer", answerRoutes);
 app.use("/assessment", assessmentRoutes);
 
 
