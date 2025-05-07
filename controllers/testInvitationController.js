@@ -3,7 +3,7 @@ import Assessment from "../models/Assessment.js";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 
-const assessmentController = {
+const testInvitationController = {
   sendInvitation: async (req, res) => {
     try {
       const { email, assessmentId, validityPeriod } = req.body;
@@ -126,7 +126,29 @@ const assessmentController = {
     } catch (err) {
       res.status(500).json({ error: 'Failed to delete invitation', details: err.message });
     }
+  },
+
+  // Verify passkey from URL parameter
+  verifyPasskey: async (req, res) => {
+    const { passkey } = req.params;
+    try {
+        const invitation = await TestInvitation.findOne({ passkey });
+        if (!invitation) {
+            return res.status(404).json({ message: 'Test invitation not found' });
+        }
+        // Check if the invitation has expired
+        const now = new Date();
+        if (now < invitation.validityStart || now > invitation.validityEnd) {
+            return res.status(400).json({ message: 'Test invitation has expired' });
+        }
+        // Update invitation status to 'accepted'
+        invitation.status = 'accepted';
+        await invitation.save();
+        res.status(200).json({ message: 'Passkey verified successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
   }
 };
 
-export default assessmentController;
+export default testInvitationController;
