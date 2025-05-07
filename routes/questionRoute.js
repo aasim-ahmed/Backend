@@ -3,10 +3,13 @@ import questionController from "../controllers/questionController.js";
 
 const questionRoutes = express.Router();
 
-
-questionRoutes.post("/", questionController.createQuestion);
+// public routes
 questionRoutes.get("/getAllQuestions", questionController.getAllQuestions);
-questionRoutes.get("/:id", questionController.getQuestion);
+questionRoutes.get("/search", questionController.searchQuestions);
+questionRoutes.get("/:id", questionController.getQuestionById);
+
+// private routes
+questionRoutes.post("/", questionController.createQuestion);
 questionRoutes.put("/:id", questionController.updateQuestion);
 questionRoutes.delete("/:id", questionController.deleteQuestion);
 
