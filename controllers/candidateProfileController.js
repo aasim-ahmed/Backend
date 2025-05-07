@@ -1,7 +1,4 @@
-import express from "express";
-import candidateProfile from "../models/candidateProfile.js";
-import auth from "../middleware/authMiddleware.js";
-import e from "express";
+import CandidateProfile from "../models/CandidateProfile.js";
 
 const candidateProfileRoutes = {
      createOrUpdateProfile : async (req, res) => {
