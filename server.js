@@ -8,10 +8,9 @@ import questionRoutes from "./routes/questionRoute.js";
 import testRoutes from "./routes/testRoute.js";
 import questionTypeRoutes from "./routes/questionTypeRoute.js";
 import assessmentRoutes from "./routes/assessmentRoute.js";
-import testInvitationRoutes from "./routes/testInvitationRoute.js"
-import candidateProfileRoutes from "./routes/candidateProfileRoute.js"
-
-
+import testInvitationRoutes from "./routes/testInvitationRoute.js";
+import candidateProfileRoutes from "./routes/candidateProfileRoute.js";
+import reviewRoutes from "./routes/reviewRoute.js";
 
 const app = express();
 
@@ -22,21 +21,18 @@ app.use(bodyParser.json());
 connectDB();
 
 app.get("/", (req, res) => {
-    res.json("API is running");
-})
+  res.json("API is running");
+});
 
 app.use("/user", userRoutes);
 app.use("/question", questionRoutes);
 app.use("/questiontype", questionTypeRoutes);
 app.use("/test", testRoutes);
 app.use("/assessment", assessmentRoutes);
-app.use('/invitations', testInvitationRoutes);
+app.use("/invitations", testInvitationRoutes);
 app.use("/candidate", candidateProfileRoutes);
-
+app.use("/reviews", reviewRoutes);
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`);
+  console.log(`Server running on port ${process.env.PORT}`);
 });
-
-
-
