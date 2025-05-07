@@ -9,6 +9,7 @@ import testRoutes from "./routes/testRoute.js";
 import questionTypeRoutes from "./routes/questionTypeRoute.js";
 import assessmentRoutes from "./routes/assessmentRoute.js";
 import testInvitationRoutes from "./routes/testInvitationRoute.js"
+import candidateProfileRoutes from "./routes/candidateProfileRoute.js"
 
 
 
@@ -30,6 +31,7 @@ app.use("/questiontype", questionTypeRoutes);
 app.use("/test", testRoutes);
 app.use("/assessment", assessmentRoutes);
 app.use('/invitations', testInvitationRoutes);
+app.use("/candidate", candidateProfileRoutes);
 
 
 app.listen(process.env.PORT, () => {
