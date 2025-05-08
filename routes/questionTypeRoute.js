@@ -1,5 +1,6 @@
 import express from "express";
 import questionTypeController from "../controllers/questionTypeController.js";
+import auth from "../middleware/authMiddleware.js";
 
 const questionTypeRoutes = express.Router();
 
@@ -10,7 +11,7 @@ questionTypeRoutes.get("/getQuestionType/:id", questionTypeController.getQuestio
 
 
 // Protected routes
-questionTypeRoutes.put("/updateQuestionType/:id", questionTypeController.updateQuestionType);
-questionTypeRoutes.post("/createQuestionType", questionTypeController.createQuestionType);
-questionTypeRoutes.delete("/deleteQuestionType/:id", questionTypeController.deleteQuestionType);
+questionTypeRoutes.put("/updateQuestionType/:id",auth, questionTypeController.updateQuestionType);
+questionTypeRoutes.post("/createQuestionType",auth, questionTypeController.createQuestionType);
+questionTypeRoutes.delete("/deleteQuestionType/:id",auth, questionTypeController.deleteQuestionType);
 export default questionTypeRoutes;
