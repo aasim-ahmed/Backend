@@ -49,7 +49,7 @@ const userController = {
       const secretKey = process.env.JWT_SECRET;
       const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
 
-      res.status(200).json({ token });
+      res.status(200).json({ token , user });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });
