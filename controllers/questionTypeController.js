@@ -1,4 +1,5 @@
 import QuestionType from '../models/QuestionType.js';
+import User from '../models/User.js';
 
 const questionTypeController = {
   
@@ -55,9 +56,15 @@ const questionTypeController = {
   },
 
   
-  createQuestionType : async (req, res) => {
+  createQuestionType: async (req, res) => {
     try {
-      const { name, description, createdBy } = req.body;
+      const { name, description } = req.body;
+      const createdBy = req.user._id;
+      // Optional: Check if user exists
+      const user = await User.findById(createdBy);
+      if (!user) {
+        return res.status(401).json({ error: 'Unauthorized: User not found' });
+      }
   
       const existing = await QuestionType.findOne({ name });
       if (existing) {
@@ -71,7 +78,8 @@ const questionTypeController = {
     } catch (err) {
       res.status(500).json({ error: 'Failed to create question type', details: err.message });
     }
-  },
+  }
+,  
   // Delete a question type
   deleteQuestionType: async (req, res) => {
     try {
