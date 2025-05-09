@@ -9,7 +9,7 @@ testRoutes.get('/', testController.getAllTests);
 testRoutes.get('/:id', testController.getTestById);
 
 // Protected routes
-testRoutes.post('/', auth, testController.createTest);
+testRoutes.post('/createTest', auth, testController.createTest);
 testRoutes.put('/:id', auth, testController.updateTest);
 testRoutes.delete('/:id', auth, testController.deleteTest);
 
