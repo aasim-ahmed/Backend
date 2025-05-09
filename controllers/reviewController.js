@@ -1,4 +1,4 @@
-import Review from "../models/Review.js";
+import AssessmentReview from "../models/Review.js";
 
 const reviewController = {
      submitReview : async (req, res) => {
@@ -7,6 +7,11 @@ const reviewController = {
       
           if (!assessment || !candidateEmail || !rating) {
             return res.status(400).json({ error: 'Assessment, email, and rating are required' });
+          }
+      
+          const existing = await AssessmentReview.findOne({ assessment, candidateEmail });
+          if (existing) {
+            return res.status(409).json({ error: 'Review already submitted for this assessment' });
           }
       
           const review = new AssessmentReview({
