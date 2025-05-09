@@ -1,34 +1,39 @@
 import Test from "../models/Test.js";  
 
 const testController = {
-    createTest : async (req, res) => {
-        try {
-          const {
-            name,
-            description,
-            questionIds = [],
-            timePerSection,
-            totalQuestions,
-            isLibraryTest,
-          } = req.body;
-      
-          const newTest = new Test({
-            name,
-            description,
-            questions: questionIds,
-            timePerSection,
-            totalQuestions,
-            isLibraryTest,
-            createdBy: req.user._id,
-          });
-      
-          await newTest.save();
-          res.status(201).json({ message: 'Test created', test: newTest });
-        } catch (err) {
-          res.status(500).json({ error: 'Failed to create test', details: err.message });
-        }
-      },
-      
+  createTest: async (req, res) => {
+    try {
+      const {
+        name,
+        description,
+        questions = [],  // <-- changed from questionIds to questions
+        timePerSection,
+        totalQuestions,
+        isLibraryTest,
+      } = req.body;
+  
+      const existingTest = await Test.findOne({ name });
+      if (existingTest) {
+        return res.status(400).json({ error: 'Test name already exists' });
+      }
+  
+      const newTest = new Test({
+        name,
+        description,
+        questions,  // <-- no change needed now
+        timePerSection,
+        totalQuestions,
+        isLibraryTest,
+        createdBy: req.user._id,
+      });
+  
+      await newTest.save();
+      res.status(201).json({ message: 'Test created', test: newTest });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to create test', details: err.message });
+    }
+  }
+,  
       // Get all tests
        getAllTests : async (req, res) => {
         try {
