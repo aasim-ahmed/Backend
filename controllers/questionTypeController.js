@@ -58,7 +58,9 @@ const questionTypeController = {
   
   createQuestionType: async (req, res) => {
     try {
-      const { name, description } = req.body;
+      const { name, description,  } = req.body;
+      console.log(req.user,"from question type controller");
+      
       const createdBy = req.user._id;
       // Optional: Check if user exists
       const user = await User.findById(createdBy);
