@@ -9,8 +9,8 @@ userRoutes.post("/createUser", userController.createUser);
 userRoutes.post("/login", userController.loginUser);
 
 // Protected routes - require authentication
-userRoutes.get("/getAllUsers", auth, userController.getAllUsers);
-userRoutes.get("/:id", auth, userController.getUserById);
+userRoutes.get("/getAllUsers", userController.getAllUsers);
+userRoutes.get("/:id", userController.getUserById);
 userRoutes.put("/:id", auth, userController.updateUser);
 userRoutes.delete("/:id", auth, userController.deleteUser);
 
