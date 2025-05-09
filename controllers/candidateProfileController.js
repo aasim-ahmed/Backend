@@ -1,23 +1,58 @@
 import CandidateProfile from "../models/CandidateProfile.js";
+import TestInvitation from "../models/TestInvitation.js"; 
 
 const candidateProfileRoutes = {
-     createOrUpdateProfile : async (req, res) => {
+  submitProfile: async (req, res) => {
+    try {
+      const { passkey, invitationId, email, fullName, phone, education, experience } = req.body;
+
+      // Step 1: Verify invitation
+      const invitation = await TestInvitation.findById(invitationId);
+
+      if (
+        !invitation ||
+        invitation.passkey !== passkey ||
+        new Date() > new Date(invitation.validityEnd)
+      ) {
+        return res.status(400).json({ error: "Invalid or expired invitation" });
+      }
+
+      // Optional: prevent multiple submissions
+      const existing = await CandidateProfile.findOne({ email, assessment: invitation.assessment });
+      if (existing) {
+        return res.status(409).json({ error: "Profile already submitted for this assessment" });
+      }
+
+      // Step 2: Create profile
+      const profile = new CandidateProfile({
+        email,
+        fullName,
+        phone,
+        education,
+        experience,
+        assessment: invitation.assessment,
+      });
+
+      await profile.save();
+
+      res.status(201).json({ message: "Profile submitted successfully", profile });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to submit profile", details: err.message });
+    }
+  
+},
+      updateProfile : async (req, res) => {
         try {
-          const { email, fullName, phone, education, experience, assessment } = req.body;
+          const updated = await CandidateProfile.findByIdAndUpdate(req.params.id, req.body, { new: true });
       
-          // Upsert profile based on email + assessment
-          const profile = await CandidateProfile.findOneAndUpdate(
-            { email, assessment },
-            { email, fullName, phone, education, experience, assessment },
-            { new: true, upsert: true }
-          );
+          if (!updated) return res.status(404).json({ error: 'Profile not found' });
       
-          res.status(200).json({ message: 'Profile saved successfully', profile });
+          res.json({ message: 'Profile updated', profile: updated });
         } catch (err) {
-          res.status(500).json({ error: 'Failed to save profile', details: err.message });
-        }
+          res.status(500).json({ error: 'Failed to update profile', details: err.message });
+        } 
       },
-      
       // Get all candidate profiles (restricted to recruiters/admins)
        getAllProfiles : async (req, res) => {
         try {
