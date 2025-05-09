@@ -2,6 +2,7 @@ import TestInvitation from "../models/TestInvitation.js";
 import Assessment from "../models/Assessment.js";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
+import "dotenv/config";
 
 const testInvitationController = {
   sendInvitation: async (req, res) => {
