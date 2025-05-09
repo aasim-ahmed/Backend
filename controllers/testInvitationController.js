@@ -1,6 +1,6 @@
 import TestInvitation from "../models/TestInvitation.js";
 import Assessment from "../models/Assessment.js";
-import nodemailer from "nodemailer";
+import sendTestInvitationEmail from "../utils/emailService.js";
 import crypto from "crypto";
 import "dotenv/config";
 
@@ -8,54 +8,32 @@ const testInvitationController = {
   sendInvitation: async (req, res) => {
     try {
       const { email, assessmentId, validityPeriod } = req.body;
-      
-      // Validate assessment ID
+
       const assessment = await Assessment.findById(assessmentId);
       if (!assessment) {
         return res.status(404).json({ error: 'Assessment not found' });
       }
-      
-      // Generate a passkey
+
       const passkey = crypto.randomBytes(16).toString('hex');
-      
-      // Create invitation
+
       const invitation = new TestInvitation({
         email,
         assessment: assessmentId,
         passkey,
         validityStart: new Date(),
-        validityEnd: new Date(Date.now() + validityPeriod), // validityPeriod in milliseconds
+        validityEnd: new Date(Date.now() + validityPeriod),
         createdBy: req.user._id,
       });
-      
+
       await invitation.save();
-      
-      // Send email with invitation link
+
       const invitationLink = `${process.env.FRONTEND_URL}/invitation/${invitation._id}?passkey=${passkey}`;
-      
-      const transporter = nodemailer.createTransport({
-        service: 'gmail', // Or your email service
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-      });
-      
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: 'Test Invitation',
-        text: `You are invited to take an assessment. Please click the link below to begin:
-        
-        ${invitationLink}
-        
-        The link is valid until ${invitation.validityEnd}`,
-      };
-      
-      await transporter.sendMail(mailOptions);
-      
+
+      await sendTestInvitationEmail(email, passkey, invitationLink, invitation.validityEnd);
+
       res.status(201).json({ message: 'Test invitation sent successfully', invitation });
     } catch (err) {
+      console.error(err);
       res.status(500).json({ error: 'Failed to send invitation', details: err.message });
     }
   },
