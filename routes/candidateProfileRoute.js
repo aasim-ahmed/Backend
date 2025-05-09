@@ -4,8 +4,12 @@ import auth from "../middleware/authMiddleware.js";
 
 const candidateProfileRoutes = express.Router();
 
-// Create or update candidate profile (called after passkey validation)
-candidateProfileRoutes.post('/', candidateProfileController.createOrUpdateProfile);
+// Create new candidate profile (called after passkey validation)
+candidateProfileRoutes.post('/', candidateProfileController.submitProfile);
+
+// Update candidate profile
+
+candidateProfileRoutes.put('/:id', candidateProfileController.updateProfile);
 
 // Get all candidate profiles (for recruiters)
 candidateProfileRoutes.get('/', auth, candidateProfileController.getAllProfiles);
