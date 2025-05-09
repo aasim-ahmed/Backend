@@ -25,8 +25,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRoutes);
-app.use("/question", questionRoutes);
 app.use("/questiontype", questionTypeRoutes);
+app.use("/question", questionRoutes);
 app.use("/test", testRoutes);
 app.use("/assessment", assessmentRoutes);
 app.use("/invitations", testInvitationRoutes);
